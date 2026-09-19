@@ -1,0 +1,8 @@
+{
+  "client_key": "TU_CLIENT_KEY_DE_TIKTOK_AQUI",
+  "client_secret": "TU_CLIENT_SECRET_DE_TIKTOK_AQUI",
+  "redirect_uri": "http://localhost:8080/callback",
+
+  "zernio_api_key": "sk_TU_API_KEY_DE_ZERNIO_AQUI",
+  "zernio_profile_id": ""
+}

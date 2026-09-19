@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de privacidad — BotTiktokStrawbxnny</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #222; }
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.15rem; margin-top: 2rem; }
+  a { color: #0b5fff; }
+  footer { margin-top: 3rem; font-size: 0.85rem; color: #666; }
+</style>
+</head>
+<body>
+  <h1>Política de privacidad</h1>
+  <p><em>Última actualización: 2026-09-19</em></p>
+
+  <p>
+    BotTiktokStrawbxnny ("la herramienta") es un proyecto de uso
+    <strong>estrictamente personal</strong>, operado y usado únicamente por
+    su desarrollador. No está dirigido a terceros ni ofrece ningún
+    servicio al público.
+  </p>
+
+  <h2>Qué datos accede</h2>
+  <p>
+    La herramienta se conecta, mediante OAuth, exclusivamente a la cuenta
+    de TikTok de su propio desarrollador. A través de la API oficial de
+    TikTok obtiene únicamente:
+  </p>
+  <ul>
+    <li>Información básica del perfil autorizado (open id, nombre visible).</li>
+    <li>Metadatos de los videos publicados en esa misma cuenta (título, vistas, fecha, enlace público).</li>
+  </ul>
+  <p>
+    No se accede, recolecta ni procesa información de ninguna otra cuenta
+    ni de otros usuarios de TikTok.
+  </p>
+
+  <h2>Dónde se almacenan los datos</h2>
+  <p>
+    Los tokens de acceso (access token / refresh token) y los metadatos de
+    los videos se guardan únicamente de forma local, en los archivos
+    <code>tokens.json</code> y <code>repost_state.json</code>, en el mismo
+    equipo o servidor donde corre la herramienta. No se envían a ningún
+    servidor propio ni se comparten con nadie más.
+  </p>
+
+  <h2>Servicios de terceros usados</h2>
+  <ul>
+    <li>
+      <strong>TikTok API</strong> (developers.tiktok.com): autenticación y
+      lectura/publicación de videos en la cuenta autorizada.
+    </li>
+    <li>
+      <strong>Zernio</strong> (zernio.com), opcional: usado únicamente si
+      el desarrollador decide publicar a través de este servicio en vez
+      de la API directa de TikTok. Sujeto a la propia política de
+      privacidad de Zernio.
+    </li>
+    <li>
+      <strong>TikWM</strong> (tikwm.com), opcional: usado únicamente para
+      descargar, sin marca de agua, el video público que la propia cuenta
+      del desarrollador ya publicó, con el fin de volverlo a publicar.
+    </li>
+  </ul>
+
+  <h2>Retención y eliminación</h2>
+  <p>
+    Como todos los datos se almacenan localmente, se eliminan simplemente
+    borrando los archivos <code>tokens.json</code> y
+    <code>repost_state.json</code>, o desinstalando la herramienta. El
+    acceso puede revocarse en cualquier momento desde TikTok:
+    Perfil → Configuración → Seguridad → Aplicaciones autorizadas.
+  </p>
+
+  <h2>Contacto</h2>
+  <p>
+    Para cualquier consulta sobre esta política:
+    <a href="mailto:ivanrojmer@gmail.com">ivanrojmer@gmail.com</a>
+  </p>
+
+  <footer><a href="index.html">← Volver</a></footer>
+</body>
+</html>

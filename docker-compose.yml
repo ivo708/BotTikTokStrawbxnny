@@ -1,0 +1,43 @@
+# Uso:
+#   1. Genera tokens.json corriendo `python tiktok_auth.py` en tu maquina
+#      (fuera de Docker, porque necesita abrir un navegador).
+#   2. Copia config.example.json a config.json y rellena tus API keys.
+#   3. docker compose up -d --build
+#   4. docker compose logs -f    (para ver los reposts en vivo)
+#
+# El intervalo (cada cuantas horas repostea) y la via de publicacion se
+# configuran abajo, en `environment`, o en un archivo .env junto a este
+# docker-compose.yml (ver .env.example).
+
+services:
+  tiktok-bot:
+    build: .
+    container_name: tiktok_repost_bot
+    restart: unless-stopped
+    environment:
+      REPOST_INTERVAL_HOURS: "${REPOST_INTERVAL_HOURS:-8}"
+      REPOST_VIA: "${REPOST_VIA:-zernio}"
+      REPOST_PRIVACY: "${REPOST_PRIVACY:-PUBLIC_TO_EVERYONE}"
+      REPOST_ALSO: "${REPOST_ALSO:-}"
+      RUN_ON_START: "${RUN_ON_START:-true}"
+      ALWAYS_POST_ON_START: "${ALWAYS_POST_ON_START:-false}"
+      REPOST_MARKER_CODEPOINT: "${REPOST_MARKER_CODEPOINT:-267B}"
+    volumes:
+      # Config y tokens viven fuera de la imagen; el contenedor los lee
+      # como archivos montados, no como parte del build.
+      - ./config.json:/app/config.json:ro
+      - ./tokens.json:/app/tokens.json
+      # Persiste los .mp4 descargados entre reinicios del contenedor,
+      # para no tener que re-descargar el mismo video cada vez.
+      - ./videos:/app/videos
+      # Persiste la fecha del ultimo repost exitoso entre reinicios del
+      # contenedor (relevante si el bot corre en una PC de casa que se
+      # prende/apaga, para no spammear un repost extra en cada arranque).
+      - ./repost_state.json:/app/repost_state.json
+    # Evita reintentos en bucle infinito si el contenedor crashea de
+    # verdad (no solo un repost fallido, que scheduler.py ya maneja solo)
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
